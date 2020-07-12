@@ -1,0 +1,13 @@
+{
+  "name": "nordic.surf-graphql-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/geordidearns/nordic.surf-graphql-server",
+  "author": "Geordi",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "apollo-server": "^2.15.1",
+    "graphql": "^15.3.0"
+  }
+}
