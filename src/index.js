@@ -1,8 +1,12 @@
-const express = require("express");
-const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServer, gql } = require("apollo-server");
 const { smhiAPI } = require("./datasource");
 
 const typeDefs = gql`
+  input StationInput {
+    parameter: String
+    stationId: String
+  }
+
   type Reading {
     forecast: Int
     observed: Int
@@ -11,13 +15,14 @@ const typeDefs = gql`
 
   type Query {
     stationData(stationName: String!): [Reading]
+    getAllData(stationObjs: [StationInput]): [Reading]
   }
 `;
 
 const resolvers = {
   Query: {
-    stationData: async (_source, { stationName }, { dataSources }) => {
-      return dataSources.stationsAPI.getStation(stationName);
+    getAllData: async (_source, { stationObjs }, { dataSources }) => {
+      return dataSources.stationsAPI.getStationData(stationObjs);
     }
   }
 };
@@ -32,10 +37,7 @@ const server = new ApolloServer({
   }
 });
 
-const app = express();
-server.applyMiddleware({ app });
-
-app.listen({ port: 4000 }, () =>
+server.listen({ port: 4000 }, () =>
   console.log(
     `🌊  Nordic Surf is pumping at http://localhost:4000${server.graphqlPath}`
   )
