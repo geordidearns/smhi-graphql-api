@@ -1,1 +1,1 @@
-# nordic.surf-graphql-server
+# Swedish Meteorological and Hydrological Institute (SMHI) GraphQL API (Unofficial)

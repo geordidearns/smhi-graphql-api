@@ -1,13 +1,22 @@
 {
-  "name": "nordic.surf-graphql-server",
+  "name": "smhi-graphql-api-unofficial",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "repository": "https://github.com/geordidearns/nordic.surf-graphql-server",
   "author": "Geordi",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
   "dependencies": {
+    "apollo-datasource-rest": "^0.9.3",
     "apollo-server": "^2.15.1",
-    "graphql": "^15.3.0"
+    "apollo-server-express": "^2.15.1",
+    "cors": "^2.8.5",
+    "graphql": "^15.3.0",
+    "graphql-scalars": "^1.2.1",
+    "lodash": "^4.17.19"
   }
 }
