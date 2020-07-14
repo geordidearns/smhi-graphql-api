@@ -1,25 +1,42 @@
-const express = require("express");
-const { ApolloServer, gql } = require("apollo-server-express");
+const { ApolloServer, gql } = require("apollo-server");
 const { smhiAPI } = require("./datasource");
+const { DateTimeResolver } = require("graphql-scalars");
 
 const typeDefs = gql`
+  scalar DateTime
+
+  input StationInput {
+    parameter: String
+    stationId: String
+  }
+
+  type ReadingValue {
+    value: Float
+    date: DateTime
+  }
+
   type Reading {
-    forecast: Int
-    observed: Int
-    localizedDate: String
+    stationId: String
+    stationName: String
+    parameterKey: Int
+    readingName: String
+    readingUnit: String
+    readingValues: [ReadingValue]
   }
 
   type Query {
     stationData(stationName: String!): [Reading]
+    stationReadings(stationObjs: [StationInput]): [Reading]
   }
 `;
 
 const resolvers = {
   Query: {
-    stationData: async (_source, { stationName }, { dataSources }) => {
-      return dataSources.stationsAPI.getStation(stationName);
+    stationReadings: async (_source, { stationObjs }, { dataSources }) => {
+      return dataSources.stationsAPI.getStationData(stationObjs);
     }
-  }
+  },
+  DateTime: DateTimeResolver
 };
 
 const server = new ApolloServer({
@@ -32,11 +49,8 @@ const server = new ApolloServer({
   }
 });
 
-const app = express();
-server.applyMiddleware({ app });
-
-app.listen({ port: 4000 }, () =>
+server.listen({ port: 4000 }, () =>
   console.log(
-    `🌊  Nordic Surf is pumping at http://localhost:4000${server.graphqlPath}`
+    `🌊  SMHI GraphQL API (Unofficial) is serving at http://localhost:4000${server.graphqlPath}`
   )
 );
