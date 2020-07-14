@@ -4,6 +4,7 @@ const cors = require("cors");
 const { ApolloServer, gql } = require("apollo-server-express");
 const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
+const responseCachePlugin = require("apollo-server-plugin-response-cache");
 
 const app = express();
 
@@ -55,9 +56,7 @@ const server = new ApolloServer({
       stationsAPI: new smhiAPI()
     };
   },
-  persistedQueries: {
-    ttl: 900 // 15 minutes
-  },
+  plugins: [responseCachePlugin()],
   introspection: true,
   playground: true
 });
