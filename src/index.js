@@ -55,6 +55,9 @@ const server = new ApolloServer({
       stationsAPI: new smhiAPI()
     };
   },
+  persistedQueries: {
+    ttl: 900 // 15 minutes
+  },
   introspection: true,
   playground: true
 });
