@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
 const { ApolloServer, gql } = require("apollo-server-express");
 const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
@@ -9,7 +8,6 @@ const responseCachePlugin = require("apollo-server-plugin-response-cache");
 const app = express();
 
 app.use(cors());
-// app.use(bodyParser());
 
 const typeDefs = gql`
   scalar DateTime
