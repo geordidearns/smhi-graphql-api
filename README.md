@@ -128,3 +128,11 @@ Properties you can query on.
 | readingName   | `STRING` |                                  | `"Våghöjd, signifikant 30 min"`                     |
 | readingUnit   | `STRING` |                                  | `"m"`                                               |
 | readingValues | `ARRAY`  | `{ value: FLOAT, date: STRING }` | `{ value: 0.33, date: "2020-07-14T09:00:00.000Z" }` |
+
+## Contributions
+
+Feel free to report issues, submit pull requests. To make roadmap requests please submit an issue.
+
+## License
+
+MIT © [Geordi](https://twitter.com/geordidearns)
