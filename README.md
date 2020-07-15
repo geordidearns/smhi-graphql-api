@@ -9,7 +9,7 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 #### 🚧 Roadmap
 
 - [ ] Error handling on unavailable data & incorrect input
-- [ ] Rate limiting
+- [X] Rate limiting & Depth limiting of queries
 - [ ] Upgrade dynos to full-time for wider/frequent use
 - [ ] Testing of endpoints and server
 - [ ] Expanding of endpoints (Meteorological, Hydrological observations & forecasts)
