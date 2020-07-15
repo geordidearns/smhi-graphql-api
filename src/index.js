@@ -9,6 +9,7 @@ const typeDefs = gql`
   input StationInput {
     parameter: String
     stationId: String
+    period: String
   }
 
   type ReadingValue {

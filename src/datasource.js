@@ -8,16 +8,16 @@ class smhiAPI extends RESTDataSource {
     // this.baseURL = ''; // Not used just yet
   }
 
-  async getStationDataByParameters(parameter, station) {
+  async getStationDataByParameters(parameter, station, period) {
     return await this.get(
-      `https://opendata-download-ocobs.smhi.se/api/version/latest/parameter/${parameter}/station/${station}/period/latest-day/data.json `
+      `https://opendata-download-ocobs.smhi.se/api/version/latest/parameter/${parameter}/station/${station}/period/${period}/data.json `
     );
   }
 
   async getStationData(stationObjs) {
     const smhiResponse = await Promise.allSettled(
       stationObjs.map(x =>
-        this.getStationDataByParameters(x.parameter, x.stationId)
+        this.getStationDataByParameters(x.parameter, x.stationId, x.period)
       )
     ).then(results => {
       return results.map(({ status, value }) => {
