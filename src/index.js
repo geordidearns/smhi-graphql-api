@@ -4,14 +4,18 @@ const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
 const responseCachePlugin = require("apollo-server-plugin-response-cache");
 const rateLimit = require("express-rate-limit");
+const depthLimit = require("graphql-depth-limit");
 
 const PORT = 4000;
 
 const app = express();
 
+// Currently uses an in-memory store until we need to move it into
+// its own store with perhaps Redis
+// LIMIT: 50 requests per 60 minutes
 const limiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 minute
-  max: 50, // limit each IP to 100 requests per windowMs
+  windowMs: 60 * 60 * 1000,
+  max: 50,
   message:
     "Too many queries created from this IP address, please try again after an hour"
 });
@@ -65,6 +69,7 @@ const server = new ApolloServer({
     };
   },
   plugins: [responseCachePlugin()],
+  validationRules: [depthLimit(5)],
   introspection: true,
   playground: true,
   engine: {
