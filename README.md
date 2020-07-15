@@ -9,7 +9,7 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 #### 🚧 Roadmap
 
 - [ ] Error handling on unavailable data & incorrect input
-- [X] Rate limiting & Depth limiting of queries
+- [x] Rate limiting & Depth limiting of queries
 - [ ] Upgrade dynos to full-time for wider/frequent use
 - [ ] Testing of endpoints and server
 - [ ] Expanding of endpoints (Meteorological, Hydrological observations & forecasts)
@@ -76,6 +76,8 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 
 Queries take an input of two parameters as an object in an array:
 
+_Example:_ `[ {stationId: "33008", period: "latest-day"} ]`
+
 - **stationId** - **(required)** - represents the station (see **Stations**)
 - **period** - **(required)** - represents the period to request for (see **Period**)
 
@@ -83,14 +85,14 @@ Queries take an input of two parameters as an object in an array:
 
 Parameters used to fetch properties from the stations.
 
-| Query Name        |
-| ----------------- |
-| seaTemperature    |
-| waveDirection     |
-| wavePeriodAverage |
-| wavePeriodMax     |
-| waveHeightAverage |
-| waveHeightMax     |
+| Query Name              | GraphQL Query Name |
+| ----------------------- | ------------------ |
+| Sea Temperature (°C)    | seaTemperature     |
+| Wave Direction (°)      | waveDirection      |
+| Wave Period Average (s) | wavePeriodAverage  |
+| Wave Period Max (s)     | wavePeriodMax      |
+| Wave Height Average (m) | waveHeightAverage  |
+| Wave Height Max (m)     | waveHeightMax      |
 
 #### 📟 Stations
 
