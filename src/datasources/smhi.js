@@ -14,10 +14,10 @@ class smhiAPI extends RESTDataSource {
     );
   }
 
-  async getStationData(stationObjs) {
+  async getStationData({ parameter, stationInput }) {
     const smhiResponse = await Promise.allSettled(
-      stationObjs.map(x =>
-        this.getStationDataByParameters(x.parameter, x.stationId, x.period)
+      stationInput.map(x =>
+        this.getStationDataByParameters(parameter, x.stationId, x.period)
       )
     ).then(results => {
       return results.map(({ status, value }) => {

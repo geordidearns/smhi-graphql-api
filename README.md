@@ -32,8 +32,8 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 ```javascript
 // Query Knolls Grund station for Wave Height Average (m)
 {
-  stationReadings(stationObjs:[
-	{stationId: "33008", parameter: "1", period: "latest-hour"}
+  waveHeightAverage(stationInput:[
+    {stationId: "33008", period: "latest-day"}
   ]) {
     stationId
     stationName
@@ -54,30 +54,42 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 // Response querying Knolls Grund station for Wave Height Average (m)
 {
   "data": {
-    "stationReadings": [
+    "waveHeightAverage": [
       {
-        "stationId": "33033",
-        "stationName": "BROFJORDEN WR BOJ",
-        "parameterKey": 11,
-        "readingName": "Våghöjd, maximal 30 min",
+        "stationId": "33008",
+        "stationName": "KNOLLS GRUND BOJ",
+        "parameterKey": 1,
+        "readingName": "Våghöjd, signifikant 30 min",
         "readingUnit": "m",
         "readingValues": [
           {
-            "value": 0.77,
-            "date": "2020-07-15T10:00:00.000Z"
+            "value": 0.46,
+            "date": "2020-07-15T21:00:00.000Z"
           }
         ]
-      }
+      },
     ]
   }
 }
 ```
 
-Queries can be made with three parameters:
+Queries take an input of two parameters as an object in an array:
 
 - **stationId** - **(required)** - represents the station (see **Stations**)
-- **parameter** - **(required)** - represents the field to request (see **Parameters**)
 - **period** - **(required)** - represents the period to request for (see **Period**)
+
+#### 🔍 Queries
+
+Parameters used to fetch properties from the stations.
+
+| Query Name        |
+| ----------------- |
+| seaTemperature    |
+| waveDirection     |
+| wavePeriodAverage |
+| wavePeriodMax     |
+| waveHeightAverage |
+| waveHeightMax     |
 
 #### 📟 Stations
 
@@ -89,19 +101,6 @@ A list of currently supported stations.
 |Finngrundet WR | 33003 |
 |Väderöarna WR | 33015 |
 |Brofjorden WR | 33033 |
-
-#### 🔍 Parameters
-
-Parameters used to fetch properties from the stations.
-
-| Parameter               | ID  |
-| ----------------------- | --- |
-| Wave Height (m)         | 1   |
-| Sea Temperature (°C)    | 5   |
-| Wave Direction (°)      | 8   |
-| Wave Period Max (s)     | 9   |
-| Wave Period Average (s) | 10  |
-| Wave Height Max (m)     | 11  |
 
 #### 🔍 Periods
 
