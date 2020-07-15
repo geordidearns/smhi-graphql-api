@@ -26,7 +26,6 @@ const typeDefs = gql`
   scalar DateTime
 
   input StationInput {
-    # parameter: String
     stationId: String
     period: String
   }
