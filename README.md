@@ -88,7 +88,7 @@ _Example:_ `[ {stationId: "33008", period: "latest-day"} ]`
 
 Parameters used to fetch properties from the stations.
 
-| Query Name              | GraphQL Query Name |
+| Property Name              | GraphQL Query Name |
 | ----------------------- | ------------------ |
 | Sea Temperature (°C)    | seaTemperature     |
 | Wave Direction (°)      | waveDirection      |
