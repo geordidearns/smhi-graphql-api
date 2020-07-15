@@ -2,9 +2,9 @@
 
 ## 🙌 Motivation
 
-This GraphQL API documents the Swedish Meteorological and Hydrological Institutes sea observations from multiple buoys surrounding the _Baltic Sea_, _Kattegat Strait_ and _Skagerrak strait_.
+This GraphQL API documents the Swedish Meteorological and Hydrological Institute ocean observations from multiple buoys surrounding the _Baltic Sea_, _Kattegat Strait_ and _Skagerrak strait_.
 
-At the time of publishing, an Open Graphql API for the data provided by SMHI wasn't publicly available. Forecasting is currently unavailable as it is a paid feature of SMHI.
+At the time of publishing, an Open GraphQL API for the data provided by SMHI isn't publicly available.
 
 #### 🚧 Roadmap
 
@@ -14,6 +14,7 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 - [ ] Testing of endpoints and server
 - [ ] Expanding of endpoints (Meteorological, Hydrological observations & forecasts)
 - [ ] Health check endpoint
+- [ ] Enquire to SMHI about forecasting data to add here
 
 #### Current Data Available:
 
@@ -134,6 +135,10 @@ Properties you can query on.
 ## Contributions
 
 Feel free to report issues, submit pull requests. To make roadmap requests please submit an issue.
+
+## Providers
+
+- [Swedish Meteorological and Hydrological Institute](https://opendata.smhi.se/)
 
 ## License
 
