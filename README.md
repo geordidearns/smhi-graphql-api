@@ -75,9 +75,9 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 
 Queries can be made with three parameters:
 
-- **stationId** - represents the station (see **Stations**)
-- **parameter** - represents the field to request (see **Parameters**)
-- **period** - represents the period to request for (see **Period**)
+- **stationId** - **(required)** - represents the station (see **Stations**)
+- **parameter** - **(required)** - represents the field to request (see **Parameters**)
+- **period** - **(required)** - represents the period to request for (see **Period**)
 
 #### 📟 Stations
 
