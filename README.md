@@ -17,6 +17,8 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 
 ## Usage 🔧
 
+#### Endpoint: `https://smhi-graphql-api.herokuapp.com/graphql`
+
 #### Example query
 
 ```javascript
