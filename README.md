@@ -13,6 +13,7 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 - [ ] Upgrade dynos to full-time for wider/frequent use
 - [ ] Testing of endpoints and server
 - [ ] Expanding of endpoints (Meteorological, Hydrological observations & forecasts)
+- [ ] Health check endpoint
 
 #### Current Data Available:
 
