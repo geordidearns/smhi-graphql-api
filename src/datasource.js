@@ -5,8 +5,7 @@ const _ = require("lodash");
 class smhiAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL =
-      "https://www.smhi.se/wpt-a/backend_seapointforecast_nextgen/oceandata/stations/wave/";
+    // this.baseURL = ''; // Not used just yet
   }
 
   async getStationDataByParameters(parameter, station) {

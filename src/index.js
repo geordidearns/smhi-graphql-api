@@ -1,13 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const { ApolloServer, gql } = require("apollo-server-express");
+// const express = require("express");
+// const cors = require("cors");
+const { ApolloServer, gql } = require("apollo-server");
 const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
 const responseCachePlugin = require("apollo-server-plugin-response-cache");
 
-const app = express();
+// const app = express();
 
-app.use(cors());
+// app.use(cors());
 
 const typeDefs = gql`
   scalar DateTime
@@ -59,9 +59,9 @@ const server = new ApolloServer({
   playground: true
 });
 
-server.applyMiddleware({ app, path: "/graphql" });
+// server.applyMiddleware({ app, path: "/graphql" });
 
-app.listen({ port: process.env.PORT || 4000 }, () => {
+server.listen({ port: process.env.PORT || 4000 }, () => {
   console.log(
     `🌊  SMHI GraphQL API (Unofficial) is serving at http://localhost:4000${server.graphqlPath}`
   );
