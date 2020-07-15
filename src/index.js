@@ -1,13 +1,7 @@
-// const express = require("express");
-// const cors = require("cors");
 const { ApolloServer, gql } = require("apollo-server");
 const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
 const responseCachePlugin = require("apollo-server-plugin-response-cache");
-
-// const app = express();
-
-// app.use(cors());
 
 const typeDefs = gql`
   scalar DateTime
@@ -56,10 +50,11 @@ const server = new ApolloServer({
   },
   plugins: [responseCachePlugin()],
   introspection: true,
-  playground: true
+  playground: true,
+  engine: {
+    reportSchema: true
+  }
 });
-
-// server.applyMiddleware({ app, path: "/graphql" });
 
 server.listen({ port: process.env.PORT || 4000 }, () => {
   console.log(
