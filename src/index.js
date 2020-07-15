@@ -26,7 +26,6 @@ const typeDefs = gql`
   scalar DateTime
 
   input StationInput {
-    parameter: String
     stationId: String
     period: String
   }
@@ -39,7 +38,11 @@ const typeDefs = gql`
   type Reading {
     stationId: String
     stationName: String
-    parameterKey: Int
+    waveHeight: ReadingParameter
+    seaTemperature: ReadingParameter
+  }
+
+  type ReadingParameter {
     readingName: String
     readingUnit: String
     readingValues: [ReadingValue]
@@ -54,7 +57,20 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     stationReadings: async (_source, { stationObjs }, { dataSources }) => {
+       // TODO: Find a simple endpoint that might only return stationName or similar
       return dataSources.stationsAPI.getStationData(stationObjs);
+    }
+  },
+  Reading: {
+    async waveHeight({ stationId, period }) {
+      return dataSources.stationsAPI.getStationData([
+        { parameter: 1, stationId, period }
+      ])
+    },
+    async seaTemperature({ stationId, period }) {
+      return dataSources.stationsAPI.getStationData([
+        { parameter: 5, stationId, period }
+      ])
     }
   },
   DateTime: DateTimeResolver
