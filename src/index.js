@@ -1,7 +1,22 @@
-const { ApolloServer, gql } = require("apollo-server");
+const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
 const { smhiAPI } = require("./datasource");
 const { DateTimeResolver } = require("graphql-scalars");
 const responseCachePlugin = require("apollo-server-plugin-response-cache");
+const rateLimit = require("express-rate-limit");
+
+const PORT = 4000;
+
+const app = express();
+
+const limiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 minute
+  max: 50, // limit each IP to 100 requests per windowMs
+  message:
+    "Too many queries created from this IP address, please try again after an hour"
+});
+
+app.use(limiter);
 
 const typeDefs = gql`
   scalar DateTime
@@ -57,7 +72,9 @@ const server = new ApolloServer({
   }
 });
 
-server.listen({ port: process.env.PORT || 4000 }, () => {
+server.applyMiddleware({ app, path: "/graphql" });
+
+app.listen({ port: process.env.PORT || PORT }, () => {
   console.log(
     `🌊  SMHI GraphQL API (Unofficial) is serving at http://localhost:4000${server.graphqlPath}`
   );
