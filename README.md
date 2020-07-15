@@ -138,6 +138,8 @@ Feel free to report issues, submit pull requests. To make roadmap requests pleas
 
 ## Providers
 
+![[Swedish Meteorological and Hydrological Institute](https://opendata.smhi.se/)](https://upload.wikimedia.org/wikipedia/commons/8/85/SMHI_Logo.svg)
+
 - [Swedish Meteorological and Hydrological Institute](https://opendata.smhi.se/)
 
 ## License
