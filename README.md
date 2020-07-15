@@ -1,12 +1,20 @@
 # 🌊 SMHI GraphQL API (Unofficial)
 
-## Motivation 🙌
+## 🙌 Motivation
 
 This GraphQL API documents the Swedish Meteorological and Hydrological Institutes sea observations from multiple buoys surrounding the _Baltic Sea_, _Kattegat Strait_ and _Skagerrak strait_.
 
 At the time of publishing, an Open Graphql API for the data provided by SMHI wasn't publicly available. Forecasting is currently unavailable as it is a paid feature of SMHI.
 
-#### Current Data Available
+#### 🚧 Roadmap
+
+- [ ] Error handling on unavailable data & incorrect input
+- [ ] Rate limiting
+- [ ] Upgrade dynos to full-time for wider/frequent use
+- [ ] Testing of endpoints and server
+- [ ] Expanding of endpoints (Meteorological, Hydrological observations & forecasts)
+
+#### Current Data Available:
 
 | Station        | Wave Height (m) | Sea Temperature (°C) | Wave Period Max (s) | Wave Direction (°) | Wave Period Average (s) | Wave Height Max (m) |
 | -------------- | --------------- | -------------------- | ------------------- | ------------------ | ----------------------- | ------------------- |
@@ -15,17 +23,17 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 | Finngrundet WR | ✅              | ✅                   | ✅                  | ✅                 | ✅                      | ✅                  |
 | Väderöarna WR  | ✅              | ✅                   | ✅                  | ✅                 | ✅                      | ✅                  |
 
-## Usage 🔧
+## 🔧 Usage
 
 #### Endpoint: `https://smhi-graphql-api.herokuapp.com/graphql`
 
-#### Example query
+#### ➡️ Example query
 
 ```javascript
 // Query Knolls Grund station for Wave Height Average (m)
 {
   stationReadings(stationObjs:[
-	{stationId: "33008", parameter: "1"}
+	{stationId: "33008", parameter: "1", period: "latest-hour"}
   ]) {
     stationId
     stationName
@@ -40,12 +48,38 @@ At the time of publishing, an Open Graphql API for the data provided by SMHI was
 }
 ```
 
-Queries can be made with two parameters:
+#### 🔊 Example response
+
+```javascript
+// Response querying Knolls Grund station for Wave Height Average (m)
+{
+  "data": {
+    "stationReadings": [
+      {
+        "stationId": "33033",
+        "stationName": "BROFJORDEN WR BOJ",
+        "parameterKey": 11,
+        "readingName": "Våghöjd, maximal 30 min",
+        "readingUnit": "m",
+        "readingValues": [
+          {
+            "value": 0.77,
+            "date": "2020-07-15T10:00:00.000Z"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Queries can be made with three parameters:
 
 - **stationId** - represents the station (see **Stations**)
 - **parameter** - represents the field to request (see **Parameters**)
+- **period** - represents the period to request for (see **Period**)
 
-#### Stations 📟
+#### 📟 Stations
 
 A list of currently supported stations.
 | Station Name | ID |
@@ -56,7 +90,7 @@ A list of currently supported stations.
 |Väderöarna WR | 33015 |
 |Brofjorden WR | 33033 |
 
-#### Parameters 🔍
+#### 🔍 Parameters
 
 Parameters used to fetch properties from the stations.
 
@@ -69,15 +103,26 @@ Parameters used to fetch properties from the stations.
 | Wave Period Average (s) | 10  |
 | Wave Height Max (m)     | 11  |
 
-#### Station Properties 📋
+#### 🔍 Periods
+
+Period is used to fetch properties within a time period.
+
+| Period            | Key           |
+| ----------------- | ------------- |
+| Latest hour       | latest-hour   |
+| Latest day        | latest-day    |
+| Latest months     | latest-months |
+| Corrected Archive | N/A           |
+
+#### 📋 Station Properties & Response types
 
 Properties you can query on.
 
-| Property      | Type     |                                  |
-| ------------- | -------- | -------------------------------- |
-| stationId     | `STRING` |
-| stationName   | `STRING` |
-| parameterKey  | `Int`    |
-| readingName   | `STRING` |
-| readingUnit   | `STRING` |
-| readingValues | `ARRAY`  | `{ value: FLOAT, date: STRING }` |
+| Property      | Type     | Nested properties                | Response Example                                    |
+| ------------- | -------- | -------------------------------- | --------------------------------------------------- |
+| stationId     | `STRING` |                                  | `"33008"`                                           |
+| stationName   | `STRING` |                                  | `"KNOLLS GRUND BOJ"`                                |
+| parameterKey  | `Int`    |                                  | `1`                                                 |
+| readingName   | `STRING` |                                  | `"Våghöjd, signifikant 30 min"`                     |
+| readingUnit   | `STRING` |                                  | `"m"`                                               |
+| readingValues | `ARRAY`  | `{ value: FLOAT, date: STRING }` | `{ value: 0.33, date: "2020-07-14T09:00:00.000Z" }` |
