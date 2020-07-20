@@ -24,6 +24,8 @@ At the time of publishing, an Open GraphQL API for the data provided by SMHI isn
 | Huvudskär Ost  | ✅              | ❌                   | ✅                  | ✅                 | ❌                      | ✅                  |
 | Finngrundet WR | ✅              | ✅                   | ✅                  | ✅                 | ✅                      | ✅                  |
 | Väderöarna WR  | ✅              | ✅                   | ✅                  | ✅                 | ✅                      | ✅                  |
+| Brofjorden WR  |               |                    |                   |                  |                       |                   |
+| Vaderoarna WR  |               |                    |                   |                  |                       |                   |
 
 ## 🔧 Usage
 
