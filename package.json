@@ -20,7 +20,7 @@
     "graphql": "^15.3.0",
     "graphql-depth-limit": "^1.1.0",
     "graphql-scalars": "^1.2.1",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {}
 }
